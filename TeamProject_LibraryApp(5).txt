@@ -92,19 +92,19 @@ LibraryApp - приложение управления библиотекой. �
 ===================================================
 
 App menu:
-1. Add new book
-2. View book catalog
-3. Find a book by catalog number
-4. Find a book by author (BookCatalog)
-5. Find a book by book title
-6. Create a new reader card
-7. View reader card
-8. Close reader card
-9. Reopen reader card
-10. Borrow a book from the library
-11. Return the book to the library
-12. Remove book from catalog
-13. Exit App
+[1] Add new book
+[2] View book catalog
+[3] Find a book by catalog number
+[4] Find a book by author (BookCatalog)
+[5] Find a book by book title
+[6] Create a new reader card
+[7] View reader card
+[8] Close reader card
+[9] Reopen reader card
+[10] Borrow a book from the library
+[11] Return the book to the library
+[12] Remove book from catalog
+[13] Exit App
 
 Please select menu item:
 
