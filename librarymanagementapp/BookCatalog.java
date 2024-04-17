@@ -1,6 +1,8 @@
 package librarymanagementapp;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BookCatalog {
@@ -15,11 +17,7 @@ public class BookCatalog {
     }
 
     public boolean removeBook(int catalogNumber) {
-        if (books.containsKey(catalogNumber)) {
-            books.remove(catalogNumber);
-            return true;
-        }
-        return false;
+        return books.remove(catalogNumber) != null;
     }
 
     public Map<Integer, Book> findBookByAuthor(String searchQuery, String type) {
@@ -32,8 +30,9 @@ public class BookCatalog {
                     result.put(book.getCatalogNumber(), book);
                 }
             }
-            // Search by partial match of the author's name
-        } else if (type.equals("partial")) {
+        }
+        // Search by partial match of the author's name
+        else if (type.equals("partial")) {
             for (Book book : books.values()) {
                 if (book.getAuthor().contains(searchQuery)) {
                     result.put(book.getCatalogNumber(), book);
@@ -42,14 +41,31 @@ public class BookCatalog {
         } else {
             System.out.println("Invalid search type. Valid values are 'exact' or 'partial'.");
         }
+
         return result;
     }
 
-    public void sortBooks(String sortBy) {
-
+    public Book findByCatalogNumber(int catalogNumber) {
+        Book foundBook = books.get(catalogNumber);
+        if (foundBook == null) {
+            System.out.println("Book with  this catalog number " + catalogNumber + " not found.");
+        }
+        return foundBook;
+    }
+    public List<Book> findByTitle(String title) {
+        List<Book> result = new ArrayList<>();
+        for (Book book : books.values()) {
+            if (book.getBookTitle().equalsIgnoreCase(title)) {
+                result.add(book);
+            }
+        }
+        if (result.isEmpty()) {
+            System.out.println("No books found with this title: " + title);
+        }
+        return result;
     }
 
-    public void printCatalog() {
+    public void printCatalog () {
         books.values().forEach(System.out::println);
     }
 }
