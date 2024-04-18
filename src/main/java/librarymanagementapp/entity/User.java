@@ -1,4 +1,4 @@
-package librarymanagementapp;
+package librarymanagementapp.entity;
 
 public class User {
     private int userID;

@@ -1,4 +1,6 @@
-package librarymanagementapp;
+package librarymanagementapp.service;
+
+import librarymanagementapp.entity.Book;
 
 import java.util.HashMap;
 import java.util.Map;

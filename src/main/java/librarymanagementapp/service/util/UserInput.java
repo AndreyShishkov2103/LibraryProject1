@@ -18,5 +18,4 @@ public class UserInput {
         System.out.println(message);
         return scanner.nextInt();
     }
-
 }

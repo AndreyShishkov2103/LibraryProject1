@@ -1,14 +1,16 @@
-package librarymanagementapp;
+package librarymanagementapp.service;
+
+import librarymanagementapp.entity.Book;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BookCatalog {
+public class BookCatalogService {
     private Map<Integer, Book> books;
 
-    public BookCatalog(Map<Integer, Book> books) {
+    public BookCatalogService() {
         this.books = new HashMap<>(books);
     }
 

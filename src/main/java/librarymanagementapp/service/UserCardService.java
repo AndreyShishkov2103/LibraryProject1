@@ -6,6 +6,9 @@ package librarymanagementapp;
  * @version 17-Apr-24
  */
 
+import librarymanagementapp.entity.User;
+import librarymanagementapp.service.BookCatalogService;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +16,7 @@ public class UserCardService {
     private Map<Integer, UserCard> userCards;
 
     public UserCardService() {
-        BookCatalog bookCatalog = new BookCatalog();
+        BookCatalogService bookCatalog = new BookCatalogService();
         userCards = new HashMap<>();
     }
 
