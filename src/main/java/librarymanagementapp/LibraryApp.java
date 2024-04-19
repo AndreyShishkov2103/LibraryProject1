@@ -3,6 +3,7 @@ package librarymanagementapp;
 /**
  * @author: Anton Gorbovyi
  * @version: 19.04.2024
+ *
  */
 
 import java.util.Scanner;
@@ -16,7 +17,7 @@ public class LibraryApp {
 
     public static void main(String[] args) {
         BookCatalog bookCatalog = new BookCatalog();
-//        BookCatalogService service = new BookCatalogService();
+//        BookCatalogService service = new BookCatalogService(books);
 
 
         System.out.println("=====================");
