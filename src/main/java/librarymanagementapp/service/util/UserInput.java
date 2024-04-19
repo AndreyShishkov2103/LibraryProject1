@@ -14,7 +14,7 @@ public class UserInput {
         return scanner.nextLine();
     }
 
-    public static Integer getInt(Integer message) {
+    public static Integer getInt(String message) {
         System.out.println(message);
         return scanner.nextInt();
     }

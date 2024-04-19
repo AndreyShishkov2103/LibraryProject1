@@ -8,8 +8,8 @@ import java.util.Map;
 public class LibraryService {
     private Map<Integer, Book> books;
 
-    public LibraryService() {
-        books = new HashMap<>();
+    public LibraryService(Map<Integer, Book> books) {
+        this.books = books;
     }
 
     public boolean borrowBookFromLibrary(Integer catalogNumber) {

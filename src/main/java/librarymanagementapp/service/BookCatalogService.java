@@ -1,6 +1,7 @@
 package librarymanagementapp.service;
 
 import librarymanagementapp.entity.Book;
+import librarymanagementapp.repository.BookCatalog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,8 +11,8 @@ import java.util.Map;
 public class BookCatalogService {
     private Map<Integer, Book> books;
 
-    public BookCatalogService() {
-        this.books = new HashMap<>(books);
+    public BookCatalogService(Map<Integer, Book> books) {
+        this.books = books;
     }
 
     public void addBook(Book book) {
@@ -50,7 +51,7 @@ public class BookCatalogService {
     public Book findByCatalogNumber(int catalogNumber) {
         Book foundBook = books.get(catalogNumber);
         if (foundBook == null) {
-            System.out.println("Book with  this catalog number " + catalogNumber + " not found.");
+            System.out.println("Book with this catalog number " + catalogNumber + " not found.");
         }
         return foundBook;
     }
