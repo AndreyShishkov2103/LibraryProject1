@@ -148,7 +148,6 @@ public class LibraryApp {
                     break;
                 case 8:
                     System.out.println("**** Close reader card ****");
-                    System.out.println("Close reader card");
                     int userId3 = UserInput.getInt("Enter reader id: ");
                     boolean closed = userCardService.closeUserCard(userId3);
                     if (closed) {
@@ -162,7 +161,6 @@ public class LibraryApp {
                     break;
                 case 9:
                     System.out.println("**** Reopen reader card ****");
-                    System.out.println("Reactivate reader card");
                     int userId4 = UserInput.getInt("Enter reader id: ");
                     userCardService.reopenUserCard(userId4);
 
