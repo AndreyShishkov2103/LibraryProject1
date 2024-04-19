@@ -1,12 +1,23 @@
 package librarymanagementapp;
 
+/**
+ * @author: Anton Gorbovyi
+ * @version: 19.04.2024
+ */
+
 import java.util.Scanner;
+import librarymanagementapp.repository.BookCatalog;
+import librarymanagementapp.service.BookCatalogService;
+//import librarymanagementapp.UserCard;
 
 public class LibraryApp {
-    static Scanner scanner = new Scanner(System.in);
-    public static void main(String[] args) {
 
-        byte menuItem;
+    static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        BookCatalog bookCatalog = new BookCatalog();
+//        BookCatalogService service = new BookCatalogService();
+
 
         System.out.println("=====================");
         System.out.println("**** App menu: ****");
@@ -28,7 +39,7 @@ public class LibraryApp {
 
         System.out.print("Please select menu item: ");
 
-
+        byte menuItem;
 
         do {
             menuItem = scanner.nextByte();
@@ -36,27 +47,34 @@ public class LibraryApp {
             switch (menuItem) {
                 case 1:
                     System.out.println("Please add new book to library catalog:");
+//                    service.addBook();
                     break;
                 case 2:
                     System.out.println("Book catalog");
+//                    bookCatalog.printCatalog();
                     break;
                 case 3:
                     System.out.println("Please enter catalog number to find a book");
+//                    bookCatalog.findByCatalogNumber(int catalogNumber);
                     break;
                 case 4:
                     System.out.println("Please write the author's name to find all his books");
+//                    bookCatalog.findBookByAuthor();
                     break;
                 case 5:
                     System.out.println("Please enter book title to find a book");
+//                    bookCatalog.findByTitle();
                     break;
                 case 6:
                     System.out.println("Please enter reader information to create reader card");
+//                    userCardService.addNewUserCard();
                     break;
                 case 7:
                     System.out.println("Please enter reader to view a reader card");
                     break;
                 case 8:
                     System.out.println("Close reader card");
+//                    userCardService.closeUserCard();
                     break;
                 case 9:
                     System.out.println("Reactivate reader card");
@@ -78,4 +96,5 @@ public class LibraryApp {
             }
         } while (menuItem != 13);
     }
+
 }
