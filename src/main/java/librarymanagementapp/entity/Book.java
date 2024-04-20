@@ -8,45 +8,57 @@ public class Book {
     private String publisher;
     private Integer catalogNumber;
     private boolean isInLibrary;
+    private Integer borrowedTo;
 
-    public Book(String author, String bookTitle, String genre, String publisher, Integer catalogNumber, boolean isInLibrary) {
+    public Book(String author, String bookTitle, String genre, String publisher, Integer catalogNumber) {
         this.author = author;
         this.bookTitle = bookTitle;
         this.genre = genre;
         this.publisher = publisher;
         this.catalogNumber = catalogNumber;
-        this.isInLibrary = isInLibrary;
+        this.isInLibrary = true;
+        this.borrowedTo = -1;
     }
 
     public String getAuthor() {
-        return author;
+        return this.author;
     }
 
     public String getBookTitle() {
-        return bookTitle;
+        return this.bookTitle;
     }
 
     public Integer getCatalogNumber() {
-        return catalogNumber;
+        return this.catalogNumber;
     }
-    
+
+    public int getBorrowedTo()  {
+        return borrowedTo;
+    }
+
     public boolean isInLibrary() {
         return isInLibrary;
     }
 
-    public void setInLibrary(boolean inLibrary) {
-        isInLibrary = inLibrary;
+    public void setInLibrary() {
+        this.isInLibrary = true;
+        this.borrowedTo = -1;
+    }
+
+    public void setNotInLibrary(int borrowedTo) {
+        this.isInLibrary = false;
+        this.borrowedTo = borrowedTo;
     }
 
     @Override
     public String toString() {
         return "librarymanagementapp.Book.Book{" +
-                "author='" + author + '\'' +
-                ", bookTitle='" + bookTitle + '\'' +
-                ", genre='" + genre + '\'' +
-                ", publisher='" + publisher + '\'' +
-                ", catalogNumber=" + catalogNumber +
-                ", isInLibrary=" + isInLibrary +
+                "author='" + this.author + '\'' +
+                ", bookTitle='" + this.bookTitle + '\'' +
+                ", genre='" + this.genre + '\'' +
+                ", publisher='" + this.publisher + '\'' +
+                ", catalogNumber=" + this.catalogNumber +
+                ", isInLibrary=" + this.isInLibrary +
                 '}';
     }
 }

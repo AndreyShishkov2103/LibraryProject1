@@ -28,30 +28,31 @@ public class LibraryApp {
         LibraryService libraryService = new LibraryService(bookCatalog.getBooks());
         UserCardService userCardService = new UserCardService(bookCatalog.getUserCards());
 
-
-        System.out.println("=====================");
-        System.out.println("**** App menu: ****");
-        System.out.println("=====================");
-        System.out.println("[1] Add new book");
-        System.out.println("[2] View book catalog");
-        System.out.println("[3] Find a book by catalog number");
-        System.out.println("[4] Find a book by author");
-        System.out.println("[5] Find a book by book title");
-        System.out.println("[6] Create a new reader card");
-        System.out.println("[7] View reader card");
-        System.out.println("[8] Close reader card");
-        System.out.println("[9] Reopen reader card");
-        System.out.println("[10] Borrow a book from the library");
-        System.out.println("[11] Return the book to the library");
-        System.out.println("[12] Remove book from catalog");
-        System.out.println("[13] Exit App");
-        System.out.println("=====================");
-
-        System.out.print("Please select menu item: ");
+        Integer currentReader = -1;
 
         byte menuItem;
 
         do {
+            System.out.println("=====================");
+            System.out.println("**** App menu: ****");
+            System.out.println("=====================");
+            System.out.println("[1] Add new book");
+            System.out.println("[2] View book catalog");
+            System.out.println("[3] Find a book by catalog number");
+            System.out.println("[4] Find a book by author");
+            System.out.println("[5] Find a book by book title");
+            System.out.println("[6] Create a new reader card");
+            System.out.println("[7] View reader card");
+            System.out.println("[8] Close reader card");
+            System.out.println("[9] Reopen reader card");
+            System.out.println("[10] Borrow a book from the library");
+            System.out.println("[11] Return the book to the library");
+            System.out.println("[12] Remove book from catalog");
+            System.out.println("[13] Exit App");
+            System.out.println("=====================");
+
+            System.out.print("Please select menu item: ");
+
             menuItem = scanner.nextByte();
 
             switch (menuItem) {
@@ -63,8 +64,7 @@ public class LibraryApp {
                     String publisher = UserInput.getText("Publisher: ");
                     Integer catalogNumber = bookCatalog.getBooks().size();
                     System.out.println("Book catalog number: " + catalogNumber);
-                    boolean isInLibrary = true;
-                    Book book = new Book(author, bookTitle, genre, publisher, catalogNumber, isInLibrary);
+                    Book book = new Book(author, bookTitle, genre, publisher, catalogNumber);
                     bookCatalogService.addBook(book);
                     System.out.println("New book added" + book);
                     break;
@@ -104,10 +104,10 @@ public class LibraryApp {
                     System.out.println("Please enter reader information to create reader card");
                     String name = UserInput.getText("Reader name: ");
                     String surname = UserInput.getText("Reader surname: ");
-                    int userId = bookCatalog.getUserCards().size();
+                    currentReader = bookCatalog.getUserCards().size();
                     int limit = 5;
-                    System.out.println("Reader Card ID: " + userId);
-                    User user = new User(userId, name, surname);
+                    System.out.println("Reader Card ID: " + currentReader);
+                    User user = new User(currentReader, name, surname);
                     userCardService.addNewUserCard(user, limit);
                     break;
                 case 7:
@@ -117,29 +117,34 @@ public class LibraryApp {
 //                    String userName = UserInput.getText("Enter reader name:");
 //                    userCardService.findUserCardByName(userName);
 
-                    int userId2 = UserInput.getInt("Enter reader id:");
-                    userCardService.findUserCardById(userId2);
+                    currentReader = UserInput.getInt("Enter reader id:");
+                    userCardService.findUserCardById(currentReader);
 
                     break;
                 case 8:
                     System.out.println("Close reader card");
-                    int userId3 = UserInput.getInt("Enter reader id: ");
-                    boolean closed = userCardService.closeUserCard(userId3);
+                    currentReader = UserInput.getInt("Enter reader id: ");
+                    boolean closed = userCardService.closeUserCard(currentReader);
                     if (closed) {
                         System.out.println("Reader card was closed!");
                     } else {
                         System.out.println("Reader card still open!");
                     }
+                    currentReader = -1;
                     break;
                 case 9:
                     System.out.println("Reactivate reader card");
-                    int userId4 = UserInput.getInt("Enter reader id: ");
-                    userCardService.reopenUserCard(userId4);
+                    currentReader = UserInput.getInt("Enter reader id: ");
+                    userCardService.reopenUserCard(currentReader);
                     break;
                 case 10:
-                    System.out.println("Borrow a book. Enter reader");
+                    if ( currentReader < 0 )
+                    {
+                        System.out.println("Please select a reader first!");
+                        break;
+                    }
                     int bookCatalogNumberBorrow = UserInput.getInt("Enter book catalog number: ");
-                    boolean borrowed = libraryService.borrowBookFromLibrary(bookCatalogNumberBorrow);
+                    boolean borrowed = libraryService.borrowBookFromLibrary(bookCatalogNumberBorrow, currentReader);
                     if (borrowed) {
                         System.out.println("Book was borrowed");
                     } else {
@@ -147,6 +152,11 @@ public class LibraryApp {
                     }
                     break;
                 case 11:
+                    if ( currentReader < 0 )
+                    {
+                        System.out.println("Please select a reader first!");
+                        break;
+                    }
                     System.out.println("Return the book. Enter reader");
                     int bookCatalogNumberReturn = UserInput.getInt("Enter book catalog number: ");
                     libraryService.returnBookToLibrary(bookCatalogNumberReturn);
