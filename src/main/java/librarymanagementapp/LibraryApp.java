@@ -140,33 +140,26 @@ public class LibraryApp {
 //                    String userName = UserInput.getText("Enter reader name:");
 //                    userCardService.findUserCardByName(userName);
 
-<<<<<<< HEAD
                     currentReader = UserInput.getInt("Enter reader id:");
                     userCardService.findUserCardById(currentReader);
-=======
                     int userId2 = UserInput.getInt("Enter reader id: ");
                     userCardService.findUserCardById(userId2);
->>>>>>> f61767c4ffb7d283387ac6e9f728fce0c97483fd
 
                     System.out.println("============================");
                     System.out.print("Please select menu item: ");
                     break;
                 case 8:
-<<<<<<< HEAD
                     System.out.println("Close reader card");
                     currentReader = UserInput.getInt("Enter reader id: ");
                     boolean closed = userCardService.closeUserCard(currentReader);
-=======
                     System.out.println("**** Close reader card ****");
                     int userId3 = UserInput.getInt("Enter reader id: ");
                     boolean closed = userCardService.closeUserCard(userId3);
->>>>>>> f61767c4ffb7d283387ac6e9f728fce0c97483fd
                     if (closed) {
                         System.out.println("Reader card was closed!");
                     } else {
                         System.out.println("Reader card still open!");
                     }
-<<<<<<< HEAD
                     currentReader = -1;
                     break;
                 case 9:
@@ -180,7 +173,6 @@ public class LibraryApp {
                         System.out.println("Please select a reader first!");
                         break;
                     }
-=======
 
                     System.out.println("============================");
                     System.out.print("Please select menu item: ");
@@ -195,7 +187,6 @@ public class LibraryApp {
                     break;
                 case 10:
                     System.out.println("**** Borrow a book from the library ****");
->>>>>>> f61767c4ffb7d283387ac6e9f728fce0c97483fd
                     int bookCatalogNumberBorrow = UserInput.getInt("Enter book catalog number: ");
                     boolean borrowed = libraryService.borrowBookFromLibrary(bookCatalogNumberBorrow, currentReader);
                     if (borrowed) {
@@ -208,16 +199,13 @@ public class LibraryApp {
                     System.out.print("Please select menu item: ");
                     break;
                 case 11:
-<<<<<<< HEAD
                     if ( currentReader < 0 )
                     {
                         System.out.println("Please select a reader first!");
                         break;
                     }
                     System.out.println("Return the book. Enter reader");
-=======
                     System.out.println("**** Return the book to the library ****");
->>>>>>> f61767c4ffb7d283387ac6e9f728fce0c97483fd
                     int bookCatalogNumberReturn = UserInput.getInt("Enter book catalog number: ");
                     libraryService.returnBookToLibrary(bookCatalogNumberReturn);
 
