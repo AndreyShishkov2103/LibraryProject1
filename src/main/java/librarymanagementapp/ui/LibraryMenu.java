@@ -1,5 +1,4 @@
 package librarymanagementapp.ui;
 
-public class UserMenu {
-
+public class LibraryMenu {
 }
