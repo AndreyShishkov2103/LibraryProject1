@@ -9,10 +9,10 @@ package librarymanagementapp;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import librarymanagementapp.UserCardService;
+import librarymanagementapp.service.UserCardService;
 import librarymanagementapp.entity.Book;
 import librarymanagementapp.entity.User;
-import librarymanagementapp.repository.BookCatalog;
+import librarymanagementapp.repository.BookCatalogRepository;
 import librarymanagementapp.service.BookCatalogService;
 import librarymanagementapp.service.LibraryService;
 import librarymanagementapp.service.util.UserInput;
@@ -23,7 +23,7 @@ public class LibraryApp {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        BookCatalog bookCatalog = new BookCatalog();
+        BookCatalogRepository bookCatalog = new BookCatalogRepository();
         BookCatalogService bookCatalogService = new BookCatalogService(bookCatalog.getBooks());
         LibraryService libraryService = new LibraryService(bookCatalog.getBooks());
         UserCardService userCardService = new UserCardService(bookCatalog.getUserCards());

@@ -1,7 +1,7 @@
 package librarymanagementapp.service;
 
 import librarymanagementapp.entity.Book;
-import librarymanagementapp.repository.BookCatalog;
+import librarymanagementapp.repository.BookCatalogRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,18 +9,28 @@ import java.util.List;
 import java.util.Map;
 
 public class BookCatalogService {
-    private Map<Integer, Book> books;
+    private BookCatalogRepository repository;
 
-    public BookCatalogService(Map<Integer, Book> books) {
-        this.books = books;
+    public BookCatalogService(BookCatalogRepository repository) {
+        this.repository = repository;
     }
 
-    public void addBook(Book book) {
-        books.put(book.getCatalogNumber(), book);
+    public void addBook(String author, String bookTitle, String genre, String publisher, Integer catalogNumber) {
+        Book book = new Book(author,  bookTitle,  genre,  publisher, catalogNumber);
+        repository.put(book);
     }
 
-    public boolean removeBook(int catalogNumber) {
-        return books.remove(catalogNumber) != null;
+    public Book get(Integer catalogNumber ) {
+        return repository.get(catalogNumber);
+    }
+
+    public boolean removeBook(Integer catalogNumber) {
+        Book delBook = repository.get(catalogNumber);
+        if (delBook != null) {
+            repository.remove(catalogNumber);
+            return true;
+        }
+        return false;
     }
 
     public Map<Integer, Book> findBookByAuthor(String searchQuery, String type) {
@@ -28,7 +38,7 @@ public class BookCatalogService {
 
         // Search by exact match of the author's name
         if (type.equals("exact")) {
-            for (Book book : books.values()) {
+            for (Book book : repository.values()) {
                 if (book.getAuthor().equals(searchQuery)) {
                     result.put(book.getCatalogNumber(), book);
                 }
@@ -36,7 +46,7 @@ public class BookCatalogService {
         }
         // Search by partial match of the author's name
         else if (type.equals("partial")) {
-            for (Book book : books.values()) {
+            for (Book book : repository.values()) {
                 if (book.getAuthor().contains(searchQuery)) {
                     result.put(book.getCatalogNumber(), book);
                 }
@@ -49,7 +59,7 @@ public class BookCatalogService {
     }
 
     public Book findByCatalogNumber(int catalogNumber) {
-        Book foundBook = books.get(catalogNumber);
+        Book foundBook = repository.get(catalogNumber);
         if (foundBook == null) {
             System.out.println("Book with this catalog number " + catalogNumber + " not found.");
         }
@@ -57,8 +67,8 @@ public class BookCatalogService {
     }
     public List<Book> findByTitle(String title) {
         List<Book> result = new ArrayList<>();
-        for (Book book : books.values()) {
-            if (book.getBookTitle().equalsIgnoreCase(title)) {
+        for (Book book : repository.values()) {
+            if (book.getBookTitle().toLowerCase().contains(title.toLowerCase())) {
                 result.add(book);
             }
         }
@@ -69,6 +79,6 @@ public class BookCatalogService {
     }
 
     public void printCatalog () {
-        books.values().forEach(System.out::println);
+        repository.values().forEach(System.out::println);
     }
 }
