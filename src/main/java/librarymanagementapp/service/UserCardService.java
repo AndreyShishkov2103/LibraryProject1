@@ -8,6 +8,7 @@ package librarymanagementapp.service;
 
 import librarymanagementapp.UserCard;
 import librarymanagementapp.entity.User;
+
 import java.util.Map;
 
 public class UserCardService {
@@ -23,15 +24,16 @@ public class UserCardService {
     }
 
     public void findUserCardByName(String name) {
-        if (this.userCards.size() == 0) {
-            System.out.println("User card is not found!");
-        } else for (UserCard card : this.userCards.values()) {
-            if (card.getUser().getName().equals(name)) {
+        boolean found = false;
+        for (UserCard card : userCards.values()) {
+            if (card.getUser().getName().equalsIgnoreCase(name)) {
                 System.out.println(card);
-                return;
+                found = true;
             }
         }
-        System.out.println("User card is not found!");
+        if (!found) {
+            System.out.println("User card with name \"" + name + "\"is not found!");
+        }
     }
 
     public void findUserCardById(int userId) {
