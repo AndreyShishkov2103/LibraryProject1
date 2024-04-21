@@ -2,22 +2,22 @@ package librarymanagementapp.service;
 
 import librarymanagementapp.entity.Book;
 import librarymanagementapp.entity.User;
+import librarymanagementapp.repository.BookCatalogRepository;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class LibraryService {
-    private Map<Integer, Book> books;
+    private BookCatalogRepository repository;
 
-    public LibraryService(Map<Integer, Book> books) {
-        this.books = books;
+    public LibraryService(BookCatalogRepository repository) {
+        this.repository = repository;
     }
 
+
     public boolean borrowBookFromLibrary(Integer catalogNumber, int userCardNo) {
-        if (books.containsKey(catalogNumber)) {
-            Book book = books.get(catalogNumber);
+        Book book = repository.get(catalogNumber);
+        if (book != null) {
             if (!book.isInLibrary()) {
-                if ( book.getBorrowedTo() == userCardNo )
+                if (book.getBorrowedTo() == userCardNo)
                     System.out.println("This book is already borrowed to the same reader.");
                 else
                     System.out.println("This book is already borrowed to another reader.");
@@ -34,8 +34,8 @@ public class LibraryService {
     }
 
     public void returnBookToLibrary(Integer catalogNumber) {
-        if (books.containsKey(catalogNumber)) {
-            Book book = books.get(catalogNumber);
+        Book book = repository.get(catalogNumber);
+        if (book != null) {
             book.setInLibrary();
             System.out.println("Book '" + book.getBookTitle() + "' by " + book.getAuthor() + " has been returned.");
         } else {
@@ -44,3 +44,4 @@ public class LibraryService {
     }
 
 }
+
