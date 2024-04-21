@@ -69,7 +69,7 @@ public class LibraryApp {
                     String publisher = UserInput.getText("Publisher: ");
                     Integer catalogNumber = bookCatalog.getBookMap().size();
                     System.out.println("Book catalog number: " + catalogNumber);
-                    bookCatalogService.addBook(author,  bookTitle,  genre,  publisher, catalogNumber);
+                    bookCatalogService.addBook(author,  bookTitle,  genre,  publisher);
                     break;
                 case 2:
                     System.out.println("**** View book catalog ****");

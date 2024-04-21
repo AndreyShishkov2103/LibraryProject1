@@ -15,10 +15,12 @@ public class BookCatalogService {
         this.repository = repository;
     }
 
-    public void addBook(String author, String bookTitle, String genre, String publisher, Integer catalogNumber) {
-        Book book = new Book(author,  bookTitle,  genre,  publisher, catalogNumber);
+    public void addBook(String author, String bookTitle, String genre, String publisher) {
+        int nextCatalogNumber = repository.values().size() + 1;
+        Book book = new Book(author,  bookTitle,  genre,  publisher, nextCatalogNumber);
         repository.put(book);
     }
+
 
     public Book get(Integer catalogNumber ) {
         return repository.get(catalogNumber);
