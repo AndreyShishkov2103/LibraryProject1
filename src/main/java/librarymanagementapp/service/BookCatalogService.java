@@ -15,8 +15,8 @@ public class BookCatalogService {
         this.repository = repository;
     }
 
-    public void addBook(String author, String bookTitle, String genre, String publisher, boolean isInLibrary) {
-        Book book = new Book(author,  bookTitle,  genre,  publisher,  isInLibrary);
+    public void addBook(String author, String bookTitle, String genre, String publisher, Integer catalogNumber) {
+        Book book = new Book(author,  bookTitle,  genre,  publisher, catalogNumber);
         repository.put(book);
     }
 

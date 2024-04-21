@@ -11,6 +11,11 @@ public class BookCatalogRepository implements CrudRepository<Integer, Book> {
         bookMap = new HashMap<>();
     }
 
+    public Map<Integer, Book> getBookMap() {
+        return bookMap;
+    }
+
+
     @Override
     public void put (Book book) {
         bookMap.put(book.getCatalogNumber(), book);
@@ -33,16 +38,15 @@ public class BookCatalogRepository implements CrudRepository<Integer, Book> {
 
     public void init() {
         List<Book> books = new ArrayList<>(List.of(
-                new Book("Taras Shevchenko", "Kobzar", "Poetry", "Kyiv Old Guard", true),
-                new Book("Ivan Franko", "Za dvoma zaitsiamy", "Drama", "Lviv Printing House", true),
-                new Book("Lesia Ukrainka", "Lisova pisnia", "Poetry", "Kyiv Old Guard", true),
-                new Book("Ivan Nechuy-Levytsky", "Pіznorid", "Novel", "Kyiv Old Guard",  true),
-                new Book("Mykhailo Kotsiubynsky", "Intermezzo", "Novel", "Kyiv Old Guard",  true),
-                new Book("Panas Myrny", "Pіsnі smutku", "Novel", "Lviv Printing House",  true),
-                new Book("Marko Vovchok", "Novellas", "Novel", "Lviv Printing House",  true),
-                new Book("Ivan Franko", "Pіsnі smіlі", "Poetry", "Kyiv Old Guard",  true),
-                new Book("Lesia Ukrainka", "Kaminnyi hospodar", "Drama", "Lviv Printing House",  true),
-                new Book("Pavlo Tychyna", "Pluh", "Poetry", "Kyiv Old Guard",  true)
+                new Book("Taras Shevchenko", "Kobzar", "Poetry", "Kyiv Old Guard", 1),
+                new Book("Ivan Franko", "Za dvoma zaitsiamy", "Drama", "Lviv Printing House", 2),
+                new Book("Lesia Ukrainka", "Lisova pisnia", "Poetry", "Kyiv Old Guard", 3),
+                new Book("Ivan Nechuy-Levytsky", "Pіznorid", "Novel", "Kyiv Old Guard",  4),
+                new Book("Mykhailo Kotsiubynsky", "Intermezzo", "Novel", "Kyiv Old Guard",  5),
+                new Book("Panas Myrny", "Pіsnі smutku", "Novel", "Lviv Printing House",  6),
+                new Book("Ivan Franko", "Pіsnі smіlі", "Poetry", "Kyiv Old Guard",  7),
+                new Book("Lesia Ukrainka", "Kaminnyi hospodar", "Drama", "Lviv Printing House",  8),
+                new Book("Pavlo Tychyna", "Pluh", "Poetry", "Kyiv Old Guard",  9)
         ));
         books.forEach(book -> put(book));
     }
