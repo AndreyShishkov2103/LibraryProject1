@@ -9,6 +9,8 @@ package librarymanagementapp;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+
+import librarymanagementapp.repository.UserCardRepository;
 import librarymanagementapp.service.UserCardService;
 import librarymanagementapp.entity.Book;
 import librarymanagementapp.entity.User;
@@ -24,9 +26,12 @@ public class LibraryApp {
 
     public static void main(String[] args) {
         BookCatalogRepository bookCatalog = new BookCatalogRepository();
-        BookCatalogService bookCatalogService = new BookCatalogService(bookCatalog.getBooks());
-        LibraryService libraryService = new LibraryService(bookCatalog.getBooks());
-        UserCardService userCardService = new UserCardService(bookCatalog.getUserCards());
+        bookCatalog.init();
+        UserCardRepository userCardRepository = new UserCardRepository();
+
+        BookCatalogService bookCatalogService = new BookCatalogService(bookCatalog);
+        LibraryService libraryService = new LibraryService(bookCatalog);
+//        UserCardService userCardService = new UserCardService(userCardRepository);
 
         Integer currentReader = -1;
 
@@ -62,11 +67,9 @@ public class LibraryApp {
                     String bookTitle = UserInput.getText("Titel: ");
                     String genre = UserInput.getText("Genre: ");
                     String publisher = UserInput.getText("Publisher: ");
-                    Integer catalogNumber = bookCatalog.getBooks().size();
+                    Integer catalogNumber = bookCatalog.getBookMap().size();
                     System.out.println("Book catalog number: " + catalogNumber);
-                    Book book = new Book(author, bookTitle, genre, publisher, catalogNumber);
-                    bookCatalogService.addBook(book);
-                    System.out.println("New book added" + book);
+                    bookCatalogService.addBook(author,  bookTitle,  genre,  publisher, catalogNumber);
                     break;
                 case 2:
                     System.out.println("**** View book catalog ****");
@@ -100,79 +103,79 @@ public class LibraryApp {
                             System.out.println(book2);
                     }
                     break;
-                case 6:
-                    System.out.println("**** Create a new reader card ****");
-                    String name = UserInput.getText("Reader name: ");
-                    String surname = UserInput.getText("Reader surname: ");
-                    currentReader = bookCatalog.getUserCards().size();
-                    int limit = 5;
-                    System.out.println("Reader Card ID: " + currentReader);
-                    User user = new User(currentReader, name, surname);
-                    userCardService.addNewUserCard(user, limit);
-                    break;
-                case 7:
-                    System.out.println("**** View reader card ****");
-
-                    // find user card by name
-//                    String userName = UserInput.getText("Enter reader name:");
-//                    userCardService.findUserCardByName(userName);
-
-                    currentReader = UserInput.getInt("Enter reader id:");
-                    userCardService.findUserCardById(currentReader);
-
-                    break;
-                case 8:
-                    System.out.println("**** Close reader card ****");
-                    currentReader = UserInput.getInt("Enter reader id: ");
-                    boolean closed = userCardService.closeUserCard(currentReader);
-                    if (closed) {
-                        System.out.println("Reader card was closed!");
-                    } else {
-                        System.out.println("Reader card still open!");
-                    }
-                    currentReader = -1;
-                    break;
-                case 9:
-                    System.out.println("**** Reopen reader card ****");
-                    currentReader = UserInput.getInt("Enter reader id: ");
-                    userCardService.reopenUserCard(currentReader);
-                    break;
-                case 10:
-                    if ( currentReader < 0 )
-                    {
-                        System.out.println("Please select a reader first!");
-                        break;
-                    }
-                    System.out.println("**** Borrow a book from the library ****");
-                    int bookCatalogNumberBorrow = UserInput.getInt("Enter book catalog number: ");
-                    boolean borrowed = libraryService.borrowBookFromLibrary(bookCatalogNumberBorrow, currentReader);
-                    if (borrowed) {
-                        System.out.println("Book was borrowed");
-                    } else {
-                        System.out.println("Book was not borrowed");
-                    }
-                    break;
-                case 11:
-                    if ( currentReader < 0 )
-                    {
-                        System.out.println("Please select a reader first!");
-                        break;
-                    }
-                    System.out.println("**** Return the book to the library ****");
-                    System.out.println("Return the book. Enter reader");
-                    int bookCatalogNumberReturn = UserInput.getInt("Enter book catalog number: ");
-                    libraryService.returnBookToLibrary(bookCatalogNumberReturn);
-                    break;
-                case 12:
-                    System.out.println("**** Remove book from catalog ****");
-                    int bookCatalogNumberRemove = UserInput.getInt("Enter book catalog number: ");
-                    boolean remove = bookCatalogService.removeBook(bookCatalogNumberRemove);
-                    if (remove) {
-                        System.out.println("Book was removed from catalog");
-                    } else {
-                        System.out.println("Book was not removed");
-                    }
-                    break;
+//                case 6:
+//                    System.out.println("**** Create a new reader card ****");
+//                    String name = UserInput.getText("Reader name: ");
+//                    String surname = UserInput.getText("Reader surname: ");
+//                    currentReader = bookCatalog.getUserCards().size();
+//                    int limit = 5;
+//                    System.out.println("Reader Card ID: " + currentReader);
+//                    User user = new User(currentReader, name, surname);
+//                    userCardService.addNewUserCard(user, limit);
+//                    break;
+//                case 7:
+//                    System.out.println("**** View reader card ****");
+//
+//                    // find user card by name
+////                    String userName = UserInput.getText("Enter reader name:");
+////                    userCardService.findUserCardByName(userName);
+//
+//                    currentReader = UserInput.getInt("Enter reader id:");
+//                    userCardService.findUserCardById(currentReader);
+//
+//                    break;
+//                case 8:
+//                    System.out.println("**** Close reader card ****");
+//                    currentReader = UserInput.getInt("Enter reader id: ");
+//                    boolean closed = userCardService.closeUserCard(currentReader);
+//                    if (closed) {
+//                        System.out.println("Reader card was closed!");
+//                    } else {
+//                        System.out.println("Reader card still open!");
+//                    }
+//                    currentReader = -1;
+//                    break;
+//                case 9:
+//                    System.out.println("**** Reopen reader card ****");
+//                    currentReader = UserInput.getInt("Enter reader id: ");
+//                    userCardService.reopenUserCard(currentReader);
+//                    break;
+//                case 10:
+//                    if ( currentReader < 0 )
+//                    {
+//                        System.out.println("Please select a reader first!");
+//                        break;
+//                    }
+//                    System.out.println("**** Borrow a book from the library ****");
+//                    int bookCatalogNumberBorrow = UserInput.getInt("Enter book catalog number: ");
+//                    boolean borrowed = libraryService.borrowBookFromLibrary(bookCatalogNumberBorrow, currentReader);
+//                    if (borrowed) {
+//                        System.out.println("Book was borrowed");
+//                    } else {
+//                        System.out.println("Book was not borrowed");
+//                    }
+//                    break;
+//                case 11:
+//                    if ( currentReader < 0 )
+//                    {
+//                        System.out.println("Please select a reader first!");
+//                        break;
+//                    }
+//                    System.out.println("**** Return the book to the library ****");
+//                    System.out.println("Return the book. Enter reader");
+//                    int bookCatalogNumberReturn = UserInput.getInt("Enter book catalog number: ");
+//                    libraryService.returnBookToLibrary(bookCatalogNumberReturn);
+//                    break;
+//                case 12:
+//                    System.out.println("**** Remove book from catalog ****");
+//                    int bookCatalogNumberRemove = UserInput.getInt("Enter book catalog number: ");
+//                    boolean remove = bookCatalogService.removeBook(bookCatalogNumberRemove);
+//                    if (remove) {
+//                        System.out.println("Book was removed from catalog");
+//                    } else {
+//                        System.out.println("Book was not removed");
+//                    }
+//                    break;
                 case 13:
                     System.out.println("Goodbye!");
                     break;
