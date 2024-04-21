@@ -33,26 +33,17 @@ public class BookCatalogService {
         return false;
     }
 
-    public Map<Integer, Book> findBookByAuthor(String searchQuery, String type) {
-        Map<Integer, Book> result = new HashMap<>();
+    public List<Book> findBookByAuthor(String searchQuery) {
+        List<Book> result = new ArrayList<>();
 
-        // Search by exact match of the author's name
-        if (type.equals("exact")) {
-            for (Book book : repository.values()) {
-                if (book.getAuthor().equals(searchQuery)) {
-                    result.put(book.getCatalogNumber(), book);
-                }
+        for (Book book : repository.values()) {
+            if (book.getAuthor().toLowerCase().contains(searchQuery.toLowerCase())) {
+                result.add(book);
             }
         }
-        // Search by partial match of the author's name
-        else if (type.equals("partial")) {
-            for (Book book : repository.values()) {
-                if (book.getAuthor().contains(searchQuery)) {
-                    result.put(book.getCatalogNumber(), book);
-                }
-            }
-        } else {
-            System.out.println("Invalid search type. Valid values are 'exact' or 'partial'.");
+
+        if (result.isEmpty()) {
+            System.out.println("No books found with this author: " + searchQuery);
         }
 
         return result;

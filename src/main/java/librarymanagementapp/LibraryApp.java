@@ -84,11 +84,11 @@ public class LibraryApp {
                 case 4:
                     System.out.println("**** Find a book by author ****");
                     String findByAuthor = UserInput.getText("Please write the author's name to find all his books");
-                    Map<Integer, Book> bookAuthor = bookCatalogService.findBookByAuthor(findByAuthor, "exact");
+                    List<Book> bookAuthor = bookCatalogService.findBookByAuthor(findByAuthor);
                     if (bookAuthor.size() == 0) {
                         System.out.println("Book is not found");
                     } else {
-                        for (Book book2 : bookAuthor.values())
+                        for (Book book2 : bookAuthor)
                             System.out.println(book2);
                     }
                     break;
