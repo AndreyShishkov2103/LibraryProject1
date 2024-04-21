@@ -1,4 +1,4 @@
-package librarymanagementapp.ui;
+package librarymanagementapp.ui.button;
 
 public interface MenuCommand {
 

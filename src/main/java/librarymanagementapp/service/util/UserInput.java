@@ -12,7 +12,7 @@ public class UserInput {
     public static String getText(String message) {
 
         String val = "";
-        System.out.println(message);
+        System.out.print(message);
 
         do {
             val = scanner.nextLine();
@@ -31,7 +31,7 @@ public class UserInput {
     public static Integer getInt(String message) {
 
         Integer val = -1;
-        System.out.println(message);
+        System.out.print(message);
 
         do {
             val = scanner.nextInt();
