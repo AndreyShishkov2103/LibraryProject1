@@ -8,16 +8,40 @@ package librarymanagementapp.repository;
 
 import librarymanagementapp.UserCard;
 import librarymanagementapp.entity.User;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-public class UserCardRepository {
+import java.util.*;
+
+public class UserCardRepository implements CrudRepository<Integer, User> {
     private final Map<Integer, UserCard> userCards;
 
     public UserCardRepository() {
         this.userCards = new HashMap<>();
+    }
+
+    @Override
+    public void put(Integer key, User value) {
+        UserCard newUserCard = new UserCard(value);
+        userCards.put(key, newUserCard);
+    }
+
+    @Override
+    public User get(Integer key) {
+        UserCard userCard = userCards.get(key);
+        return (userCard != null) ? userCard.getUser() : null;
+    }
+
+    @Override
+    public void remove(Integer key) {
+        userCards.remove(key);
+    }
+
+    @Override
+    public Collection<User> values() {
+        Collection<User> users = new ArrayList<>();
+        for (UserCard userCard : userCards.values()) {
+            users.add(userCard.getUser());
+        }
+        return users;
     }
 
     public void init() {

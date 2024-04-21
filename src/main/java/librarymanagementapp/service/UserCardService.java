@@ -8,26 +8,27 @@ package librarymanagementapp.service;
 
 import librarymanagementapp.UserCard;
 import librarymanagementapp.entity.User;
+import librarymanagementapp.repository.UserCardRepository;
 
 import java.util.Map;
 
 public class UserCardService {
-    private Map<Integer, UserCard> userCards;
+    private UserCardRepository repository;
 
-    public UserCardService(Map<Integer, UserCard> userCards) {
-        this.userCards = userCards;
+    public UserCardService(UserCardRepository repository) {
+        this.repository = repository;
+
     }
 
-    public void addNewUserCard(User user, int limit) {
-        UserCard newUserCard = new UserCard(user);
-        userCards.put(user.getUserId(), newUserCard);
+    public void addNewUserCard(UserCard userCard) {
+        repository.put(userCard.getUserId(), userCard.getUser());
     }
 
     public void findUserCardByName(String name) {
         boolean found = false;
-        for (UserCard card : userCards.values()) {
-            if (card.getUser().getName().equalsIgnoreCase(name)) {
-                System.out.println(card);
+        for (User userCard : repository.values()) {
+            if (userCard.getUser().getName().equalsIgnoreCase(name)) {
+                System.out.println(userCard);
                 found = true;
             }
         }
@@ -37,7 +38,7 @@ public class UserCardService {
     }
 
     public void findUserCardById(int userId) {
-        UserCard userCard = userCards.get(userId);
+        User userCard = repository.get(userId);
         if (userCard != null) {
             System.out.println("User card found! " + userCard);
         } else {
@@ -46,7 +47,7 @@ public class UserCardService {
     }
 
     public boolean closeUserCard(int userId) {
-        UserCard userCard = userCards.get(userId);
+        User userCard = repository.get(userId);
         if (userCard != null) {
             userCard.closeCard();
             return true;
@@ -57,9 +58,9 @@ public class UserCardService {
     }
 
     public void reopenUserCard(int userId) {
-        UserCard userCard = userCards.get(userId);
+        User userCard = repository.get(userId);
         if (userCard != null) {
-            //Implement reopening logic here
+            userCard.reopenCard();
             System.out.println("UserCard wiht Id" + userId + "reopened.");
         } else {
             System.out.println("UserCard with ID " + userId + "not found.");

@@ -1,4 +1,5 @@
 package librarymanagementapp.entity;
+
 /**
  * AIT-TR, cohort 42.1, Java Basic, Project1
  *
@@ -10,15 +11,13 @@ public class User {
     private int userID;
     private String name;
     private String surname;
+    private boolean cardClosed;
 
     public User(int userID, String name, String surname) {
         this.userID = userID;
         this.name = name;
         this.surname = surname;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
+        this.cardClosed = false;
     }
 
     public String getName() {
@@ -29,16 +28,25 @@ public class User {
         return userID;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public User getUser() {
+        return this;
     }
 
-    public String getSurname() {
-        return surname;
+    public void closeCard() {
+        if (!cardClosed) {
+            cardClosed = true;
+            System.out.println("User card is closed.");
+        } else {
+            System.out.println("The user's card is already closed");
+        }
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void reopenCard() {
+        if (cardClosed) {
+            cardClosed = false;
+            System.out.println("The user card is reopened.");
+        } else
+            System.out.println("User card is already open");
     }
 
     @Override

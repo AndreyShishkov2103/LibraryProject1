@@ -8,6 +8,7 @@ package librarymanagementapp;
 
 import librarymanagementapp.entity.Book;
 import librarymanagementapp.entity.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +16,13 @@ public class UserCard {
     private User user;
     private List<Book> userBookList;
     private int booksLimit;
+    private boolean isClosed;
 
     public UserCard(User user) {
         this.user = user;
         this.userBookList = new ArrayList<>();
+        this.isClosed = false;
     }
-
 
     public boolean borrowBook(Book book) {
         if (userBookList.size() < booksLimit) {
@@ -44,6 +46,7 @@ public class UserCard {
 
     public void closeCard() {
         userBookList.clear();
+        this.isClosed = true;
     }
 
     public User getUser() {
@@ -70,6 +73,11 @@ public class UserCard {
         this.booksLimit = booksLimit;
     }
 
+    public void reopenCard() {
+        this.userBookList = new ArrayList<>();
+        this.isClosed = false;
+    }
+
     public void put(Integer userId, librarymanagementapp.UserCard userCard) {
     }
 
@@ -77,6 +85,6 @@ public class UserCard {
     }
 
     public Integer getUserId() {
-        return null;
+        return this.user.getUserId();
     }
 }
