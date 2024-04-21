@@ -52,7 +52,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "librarymanagementapp.Book.Book{" +
+        return "Book{" +
                 "author='" + this.author + '\'' +
                 ", bookTitle='" + this.bookTitle + '\'' +
                 ", genre='" + this.genre + '\'' +

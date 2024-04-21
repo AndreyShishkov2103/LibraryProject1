@@ -43,8 +43,8 @@ public class BookCatalogRepository implements CrudRepository<Integer, Book> {
                 new Book("Lesia Ukrainka", "Lisova pisnia", "Poetry", "Kyiv Old Guard", 3),
                 new Book("Ivan Nechuy-Levytsky", "Pіznorid", "Novel", "Kyiv Old Guard",  4),
                 new Book("Mykhailo Kotsiubynsky", "Intermezzo", "Novel", "Kyiv Old Guard",  5),
-                new Book("Panas Myrny", "Pіsnі smutku", "Novel", "Lviv Printing House",  6),
-                new Book("Ivan Franko", "Pіsnі smіlі", "Poetry", "Kyiv Old Guard",  7),
+                new Book("Panas Myrny", "Pisni smutku", "Novel", "Lviv Printing House",  6),
+                new Book("Ivan Franko", "Pisni smіlі", "Poetry", "Kyiv Old Guard",  7),
                 new Book("Lesia Ukrainka", "Kaminnyi hospodar", "Drama", "Lviv Printing House",  8),
                 new Book("Pavlo Tychyna", "Pluh", "Poetry", "Kyiv Old Guard",  9)
         ));
