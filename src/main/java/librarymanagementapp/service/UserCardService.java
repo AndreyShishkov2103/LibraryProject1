@@ -48,7 +48,7 @@ public class UserCardService {
     }
 
     public boolean closeUserCard(int userId) {
-        User userCard = repository.get(userId);
+        UserCard userCard = repository.get(userId);
         if (userCard != null) {
             userCard.closeCard();
             return true;

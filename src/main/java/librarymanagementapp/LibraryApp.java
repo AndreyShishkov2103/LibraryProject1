@@ -24,11 +24,11 @@ public class LibraryApp {
     public static void main(String[] args) {
         BookCatalogRepository bookCatalog = new BookCatalogRepository();
         bookCatalog.init();
-        UserCardRepository userCardRepository = new UserCardRepository();
+//        UserCardRepository userCardRepository = new UserCardRepository();
 
         BookCatalogService bookCatalogService = new BookCatalogService(bookCatalog);
-        LibraryService libraryService = new LibraryService(bookCatalog);
-        UserCardService userCardService = new UserCardService(userCardRepository);
+//        LibraryService libraryService = new LibraryService(bookCatalog);
+//        UserCardService userCardService = new UserCardService(userCardRepository);
 
         Integer currentReader = -1;
 

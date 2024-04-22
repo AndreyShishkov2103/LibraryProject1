@@ -22,8 +22,8 @@ public class AdminMenu {
     ExitMenu exitMenu;
     private List<MenuCommand> menuCommands;
     private BookCatalogService bookCatalogService;
-    private UserCardService userCardService;
-    private LibraryService libraryService;
+//    private UserCardService userCardService;
+//    private LibraryService libraryService;
 
 
 
@@ -71,8 +71,8 @@ public class AdminMenu {
 
                 menuCommands.add(back);
                 menuCommands.add(exitMenu);
-                UserCardMenu userCardMenu = new UserCardMenu(menuCommands);
-                userCardMenu.startUserCardMenu();
+//                UserCardMenu userCardMenu = new UserCardMenu(menuCommands);
+//                userCardMenu.startUserCardMenu();
                 break;
             case 3:
 
@@ -80,8 +80,8 @@ public class AdminMenu {
 
                 menuCommands.add(back);
                 menuCommands.add(exitMenu);
-                LibraryMenu libraryMenu = new LibraryMenu(menuCommands);
-                libraryMenu.startLibraryMenu();
+//                LibraryMenu libraryMenu = new LibraryMenu(menuCommands);
+//                libraryMenu.startLibraryMenu();
                 break;
             case 4:
                 this.exitMenu.executeCommand();

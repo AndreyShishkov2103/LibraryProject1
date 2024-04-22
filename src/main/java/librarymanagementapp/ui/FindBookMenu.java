@@ -29,12 +29,12 @@ public class FindBookMenu {
             int userInput = scanner.nextInt();
             if (userInput < 0 || userInput >= commands.size()) {
                 System.out.println("Invalid option, please try again.");
-            }
-            else {
+            } else {
                 MenuCommand command = commands.get(userInput);
                 command.executeCommand();
                 exitRequested = command.shouldExit();
             }
+        }
     }
 
 }

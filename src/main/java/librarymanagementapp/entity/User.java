@@ -11,13 +11,11 @@ public class User {
     private int userID;
     private String name;
     private String surname;
-/*    private boolean cardClosed; */
 
     public User(int userID, String name, String surname) {
         this.userID = userID;
         this.name = name;
         this.surname = surname;
-        this.cardClosed = false;
     }
 
     public String getName() {
