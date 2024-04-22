@@ -1,7 +1,6 @@
 package librarymanagementapp.service;
 
 import librarymanagementapp.entity.Book;
-import librarymanagementapp.entity.User;
 import librarymanagementapp.repository.BookCatalogRepository;
 
 

@@ -7,10 +7,9 @@ package librarymanagementapp.service;
  */
 
 import librarymanagementapp.UserCard;
+import librarymanagementapp.entity.Book;
 import librarymanagementapp.entity.User;
 import librarymanagementapp.repository.UserCardRepository;
-
-import java.util.Map;
 
 public class UserCardService {
     private UserCardRepository repository;
@@ -20,13 +19,13 @@ public class UserCardService {
 
     }
 
-    public void addNewUserCard(UserCard userCard) {
-        repository.put(userCard.getUserId(), userCard.getUser());
+    public void addNewUserCard(UserCard card) {
+        repository.put(card);
     }
 
     public void findUserCardByName(String name) {
         boolean found = false;
-        for (User userCard : repository.values()) {
+        for (UserCard userCard : repository.values()) {
             if (userCard.getUser().getName().equalsIgnoreCase(name)) {
                 System.out.println(userCard);
                 found = true;
@@ -38,32 +37,40 @@ public class UserCardService {
     }
 
     public void findUserCardById(int userId) {
-        User userCard = repository.get(userId);
+        UserCard userCard = repository.get(userId);
         if (userCard != null) {
             System.out.println("User card found! " + userCard);
         } else {
-            System.out.println("UserCard with ID " + userId + "not found");
+            System.out.println("UserCard with ID " + userId + " not found");
         }
     }
 
     public boolean closeUserCard(int userId) {
-        User userCard = repository.get(userId);
+        UserCard userCard = repository.get(userId);
         if (userCard != null) {
             userCard.closeCard();
             return true;
         } else {
-            System.out.println("UserCard with ID " + userId + "not found.");
+            System.out.println("UserCard with ID " + userId + " not found.");
             return false;
         }
     }
 
     public void reopenUserCard(int userId) {
-        User userCard = repository.get(userId);
+        UserCard userCard = repository.get(userId);
         if (userCard != null) {
             userCard.reopenCard();
-            System.out.println("UserCard wiht Id" + userId + "reopened.");
+            System.out.println("UserCard wiht Id " + userId + " reopened.");
         } else {
-            System.out.println("UserCard with ID " + userId + "not found.");
+            System.out.println("UserCard with ID " + userId + " not found.");
         }
+    }
+    public User findUserByBook(Book book){
+        for (UserCard userCard : repository.values()){
+            if (userCard.getUserBookList().contains(book)){
+                return userCard.getUser();
+            }
+        }
+        return null;
     }
 }

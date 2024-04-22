@@ -7,7 +7,7 @@ import java.util.*;
 public class BookCatalogRepository implements CrudRepository<Integer, Book> {
     private Map<Integer, Book> bookMap;
 
-    public BookCatalogRepository () {
+    public BookCatalogRepository() {
         bookMap = new HashMap<>();
     }
 

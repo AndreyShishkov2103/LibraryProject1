@@ -13,12 +13,9 @@ public class FindBookMenu {
 
     public void init () {
 
-        System.out.println("=====================");
-        System.out.println("**** App menu: ****");
-        System.out.println("=====================");
-        System.out.println("[1] Find by author");
-        System.out.println("[2] Reader");
-        System.out.println("[3] Library");
+        System.out.println("[1] by catalog number");
+        System.out.println("[2] by author");
+        System.out.println("[3] by book title");
         System.out.println("[4] " + this.exitMenu.getMenuName());
         System.out.println("=====================");
 

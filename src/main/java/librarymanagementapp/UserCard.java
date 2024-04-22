@@ -14,7 +14,7 @@ import java.util.List;
 
 public class UserCard {
     private User user;
-    private List<Book> userBookList;
+    private List<Book> borrowedBooks;
     private int booksLimit;
     private boolean isClosed;
 
@@ -86,5 +86,15 @@ public class UserCard {
 
     public Integer getUserId() {
         return this.user.getUserId();
+    }
+
+    @Override
+    public String toString() {
+        return "UserCard{" +
+                "user=" + user +
+                ", borrowedBooks=" + borrowedBooks +
+                ", booksLimit=" + booksLimit +
+                ", isClosed=" + isClosed +
+                '}';
     }
 }

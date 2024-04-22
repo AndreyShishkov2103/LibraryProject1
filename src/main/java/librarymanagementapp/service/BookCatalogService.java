@@ -4,9 +4,7 @@ import librarymanagementapp.entity.Book;
 import librarymanagementapp.repository.BookCatalogRepository;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class BookCatalogService {
     private BookCatalogRepository repository;

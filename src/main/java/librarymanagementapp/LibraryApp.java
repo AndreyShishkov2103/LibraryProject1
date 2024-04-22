@@ -32,7 +32,7 @@ public class LibraryApp {
 
         BookCatalogService bookCatalogService = new BookCatalogService(bookCatalog);
         LibraryService libraryService = new LibraryService(bookCatalog);
-        UserCardService userCardService = new UserCardService(userCardRepository);
+//        UserCardService userCardService = new UserCardService(userCardRepository);
 
         Integer currentReader = -1;
 
