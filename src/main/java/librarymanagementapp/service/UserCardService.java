@@ -21,8 +21,8 @@ public class UserCardService {
 
     }
 
-    public void addNewUserCard(UserCard userCard) {
-        repository.put(userCard.getUserId(), userCard.getUser());
+    public void addNewUserCard(User user) {
+        repository.put(user);
     }
 
     public void findUserCardByName(String name) {

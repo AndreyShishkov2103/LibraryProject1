@@ -11,7 +11,7 @@ public class User {
     private int userID;
     private String name;
     private String surname;
-    private boolean cardClosed;
+/*    private boolean cardClosed; */
 
     public User(int userID, String name, String surname) {
         this.userID = userID;
@@ -32,7 +32,7 @@ public class User {
         return this;
     }
 
-    public void closeCard() {
+/*     public void closeCard() {
         if (!cardClosed) {
             cardClosed = true;
             System.out.println("User card is closed.");
@@ -41,13 +41,13 @@ public class User {
         }
     }
 
-    public void reopenCard() {
+   public void reopenCard() {
         if (cardClosed) {
             cardClosed = false;
             System.out.println("The user card is reopened.");
         } else
             System.out.println("User card is already open");
-    }
+    } */
 
     @Override
     public String toString() {
@@ -58,7 +58,4 @@ public class User {
                 '}';
     }
 
-    public String getUserBookList() {
-        return null;
-    }
 }
