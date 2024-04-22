@@ -82,9 +82,6 @@ public class UserCard {
         this.isClosed = false;
     }
 
- /*   public void put(Integer userId, librarymanagementapp.UserCard userCard) {
-    } */
-
     public void setClosed(boolean b) {
     }
 
