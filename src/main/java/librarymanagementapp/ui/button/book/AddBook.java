@@ -1,8 +1,9 @@
-package librarymanagementapp.ui.button;
+package ui.button.book;
 
 import librarymanagementapp.repository.BookCatalogRepository;
 import librarymanagementapp.service.BookCatalogService;
 import librarymanagementapp.service.util.UserInput;
+import librarymanagementapp.ui.button.MenuCommand;
 
 public class AddBook implements MenuCommand {
 

@@ -2,7 +2,17 @@ package librarymanagementapp.ui;
 
 import librarymanagementapp.service.BookCatalogService;
 import librarymanagementapp.service.util.UserInput;
-import librarymanagementapp.ui.button.*;
+import ui.button.book.AddBook;
+import librarymanagementapp.ui.BookMenu;
+import librarymanagementapp.ui.button.MenuCommand;
+import librarymanagementapp.ui.button.ExitMenu;
+import ui.button.book.ViewAllBooks;
+import ui.button.book.FindBook;
+import ui.button.book.RemoveBook;
+import librarymanagementapp.ui.button.Back;
+import librarymanagementapp.service.UserCardService;
+import librarymanagementapp.service.LibraryService;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +20,11 @@ import java.util.List;
 public class AdminMenu {
 
     ExitMenu exitMenu;
-    private BookCatalogService bookCatalogService;
     private List<MenuCommand> menuCommands;
+    private BookCatalogService bookCatalogService;
+    private UserCardService userCardService;
+    private LibraryService libraryService;
+
 
 
     public AdminMenu(BookCatalogService bookCatalogService) {
@@ -25,9 +38,9 @@ public class AdminMenu {
         System.out.println("=====================");
         System.out.println("**** App menu: ****");
         System.out.println("=====================");
-        System.out.println("[1] Book");
-        System.out.println("[2] Reader");
-        System.out.println("[3] Library");
+        System.out.println("[1] Book menu");
+        System.out.println("[2] Reader menu");
+        System.out.println("[3] Library menu");
         System.out.println("[4] " + this.exitMenu.getMenuName());
         System.out.println("=====================");
 
@@ -37,7 +50,7 @@ public class AdminMenu {
             case 1:
                 AddBook addBook = new AddBook(bookCatalogService);
                 ViewAllBooks viewAllBooks = new ViewAllBooks(bookCatalogService);
-                FindBook findBook = new FindBook();
+                FindBook findBook = new FindBook(bookCatalogService);
                 RemoveBook removeBook = new RemoveBook(bookCatalogService);
                 Back back = new Back(this);
                 menuCommands.clear();
@@ -53,9 +66,22 @@ public class AdminMenu {
                 break;
             case 2:
 
+                menuCommands.clear();
+
+
+                menuCommands.add(back);
+                menuCommands.add(exitMenu);
+                UserCardMenu userCardMenu = new UserCardMenu(menuCommands);
+                userCardMenu.startUserCardMenu();
                 break;
             case 3:
 
+                menuCommands.clear();
+
+                menuCommands.add(back);
+                menuCommands.add(exitMenu);
+                LibraryMenu libraryMenu = new LibraryMenu(menuCommands);
+                libraryMenu.startLibraryMenu();
                 break;
             case 4:
                 this.exitMenu.executeCommand();

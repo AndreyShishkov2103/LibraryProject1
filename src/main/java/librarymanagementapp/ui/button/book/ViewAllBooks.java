@@ -1,6 +1,7 @@
-package librarymanagementapp.ui.button;
+package ui.button.book;
 
 import librarymanagementapp.service.BookCatalogService;
+import librarymanagementapp.ui.button.MenuCommand;
 
 public class ViewAllBooks implements MenuCommand {
 
