@@ -2,7 +2,7 @@ vДля визуализации структуры классов и взаим
 
 ### Классы и их методы:
 
-1. **Book** - Галина
+1. **librarymanagementapp.Book.Book** - Галина
    - `author`: String
    - `bookTitle`: String
    - `genre`: String
@@ -12,10 +12,10 @@ vДля визуализации структуры классов и взаим
 
 
 2. **BookCatalog** - Ярослав
-   - `books`: Map<Book> (поиск по `catalogNumber`, `bookTitle`)
-   - `addBook(Book book)`: void
+   - `books`: Map<librarymanagementapp.Book.Book> (поиск по `catalogNumber`, `bookTitle`)
+   - `addBook(librarymanagementapp.Book.Book book)`: void
    - `removeBook(int catalogNumber)`: boolean
-   - `findBook(String searchQuery, String type)`: Map<Book>
+   - `findBook(String searchQuery, String type)`: Map<librarymanagementapp.Book.Book>
    - `sortBooks(String sortBy)`: void
    - `printCatalog()`: void
 
@@ -26,10 +26,10 @@ vДля визуализации структуры классов и взаим
 
 4. **UserCard** - Андрей
    - `user`: User
-   - `userBookList`: List<Book>
+   - `userBookList`: List<librarymanagementapp.Book.Book>
    - `booksLimit`: int
-   - `borrowBook(Book book)`: boolean
-   - `returnBook(Book book)`: boolean
+   - `borrowBook(librarymanagementapp.Book.Book book)`: boolean
+   - `returnBook(librarymanagementapp.Book.Book book)`: boolean
    - `closeCard()`: void
 
 5. **LibraryApp** - Антон

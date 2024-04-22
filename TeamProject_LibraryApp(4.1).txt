@@ -1,0 +1,160 @@
+===================================================
+LibraryApp - групповой проект команды №3
+===================================================
+
+===================================================
+Short description
+===================================================
+
+LibraryApp - приложение управления библиотекой. Приложением пользуется администратор библиотеки, который:
+- управляет каталогом книг: добавляет, удаляет, ищет, сортирует книги
+- администрирует карточки читателей: создает карточку нового клиента, просматривает её и может "закрыть карточку" - доступ к каталогу библиотеки. 
+- выдает книги и оформляет их возврат в библиотеку. 
+
+
+===================================================
+Сущности (entity) и методы
+===================================================
+
+1. **librarymanagementapp.Book.Book** - Галина
+   - `author`: String
+   - `bookTitle`: String
+   - `genre`: String
+   - `publisher`: String
+   - `catalogNumber`: int - уникальный идентификатор записи
+   - `isInLibrary`: boolean - флаг, который показывает книга в хранилище или на руках
+
+
+2. **BookCatalog** - Ярослав
+   - `books`: Map<librarymanagementapp.Book.Book> (поиск по `catalogNumber`, `bookTitle`)
+   - `addBook(librarymanagementapp.Book.Book book)`: void
+   - `removeBookByCatalogNumber(int catalogNumber)`: boolean
+   - `findBookById(String searchQuery, String type)`: Map<librarymanagementapp.Book.Book>
+   - `findBookByAuthor(String searchQuery, String type)`: Map<librarymanagementapp.Book.Book>
+   - `findBookByBookTitle(String searchQuery, String type)`: Map<librarymanagementapp.Book.Book>
+   - `sortBooksByGenre(String sortBy)`: void
+   - `sortBooksByAuthor(String sortBy)`: void
+   - `sortBooksByAvailability(String sortBy)`: void
+   - `printCatalog()`: void
+
+3. **User** - Андрей
+   - `name`: String
+   - `surname`: String
+   - `userId`: int
+
+4. **UserCard** - Андрей
+   - `user`: User
+   - `userBookList`: List<librarymanagementapp.Book.Book>
+   - `booksLimit`: int
+   - `findUserCardByName`
+   - `checkBooksLimit`: void 
+   - `borrowBook(librarymanagementapp.Book.Book book)`: boolean
+   - `returnBook(librarymanagementapp.Book.Book book)`: boolean
+   - `closeCard()`: void
+   - `reopenUserCard()`: void
+
+5. **LibraryApp** - Антон
+   - `bookCatalog`: BookCatalog
+   - `userCards`: Map<Integer, UserCard>
+   - `login(String username, String password)`: boolean
+   - `addNewUserCard(User user, int limit)`: void
+   - `closeUserCard(int userId)`: boolean
+   - `reopenUserCard(int userId)`: boolean
+   - `borrowBookFromLibrary(int userId, int catalogNumber)`: boolean
+   - `returnBookToLibrary(int userId, int catalogNumber)`: boolean
+   - `exitMenu`: void
+   
+6. Service method - Антон
+   - UserInput
+
+===================================================
+(опционально) Страница авторизации администратора
+===================================================
+
+При запуске программы LibraryApp в консоли выводится текст:
+"Please enter your login details"
+"Username:"
+Вводим с клавиатуры Username. После ввода программа запрашивает пароль.
+
+"Password:"
+Вводим с клавиатуры Password.
+
+В случае ошибки при вводе пароля и логина выводится сообщение: "Invalid Password! Please try again!" или "Invalid Username! Please try again!", или "Invalid Username & Password! Please try again!"
+После чего администратор возвращается на шаг ввода данных Username.
+
+Если логин и пароль соответствует заранее заданным переменным, то выводится сообщение:"Welcome back!"
+И в консоли выводится главное меню приложения.
+  
+  
+===================================================
+Главное меню приложения.
+===================================================
+
+App menu:
+1. Add new book
+2. View book catalog
+3. Sort books by genre
+4. Sort books by author
+5. Sort books by availability
+6. Find a book by catalog number
+7. Find a book by author (BookCatalog)
+8. Find a book by book title
+9. Create a new reader card
+10. View reader card
+11. Close reader card
+12. Borrow a book from the library
+13. Return the book to the library
+14. Remove book from catalog
+15. Exit App
+
+Please select menu item:
+
+===================================================
+
+Описание пунктов меню:
+
+"1. Add new book"- запускает метод addBook, добавляет новую книгу в список BookCatalog через UserInput
+"2. View book catalog" - запускает метод printCatalog - показать список книг
+"3. Sort books by genre" - запускает метод sortBooksByGenre - отсортировать книги в каталоге (BookCatalog) по жанру.
+"4. Sort books by author" - запускает метод sortBooksByAuthor - отсортировать книги в каталоге (BookCatalog) по автору.
+"5. Sort books by availability" - запускает метод sortBooksByAvailability - отсортировать книги в каталоге (BookCatalog) по признаку isInLibrary=true.
+"6. Find a book by catalog number" - запускает метод findBookById - поиск книги по номеру в каталоге (BookCatalog).
+"7. Find a book by author" - запускает метод findBookByAuthor - поиск книги по автору в каталоге (BookCatalog).
+"8. Find a book by book title" - запускает метод findBookByBookTitle - поиск книги по номеру в каталоге (BookCatalog).
+"9. Create a new reader card" - запускает метод addNewUserCard - создать карточку нового читателя.
+"10. View reader card" - запускает метод findUserCardByName - выводит данные карточки: имя читателя, его userId, список книг (userBookList), которые были взяты в библиотеке и которые вернули. (на втором этапе можно добавить дату, когда книга была выдана и когда её вернули).
+"11. Close reader card" - запускает метод CloseUserCard - закрыть доступ пользователю в библиотеку.
+"12. Reopen reader card" - запускает метод reopenUserCard - звозобновить доступ пользователю в библиотеку.
+"13. Borrow a book from library"- запускает метод borrowBookFromLibrary - выдать книгу читателю User, при условии, что книга существует в каталоге книг (BookCatalog), есть в наличии в библиотеке (isInLibrary=true) и у пользователя не превышен лимит книг (booksLimit).
+"14. Return the book to the library"- returnBookToLibrary - вернуть книгу в библиотеку.
+"15. Remove book from catalog"- запускает метод removeBookByCatalogNumber - удаляет книгу из каталога (BookCatalog).
+"16. Exit App" - запускает метод exitMenu - выход из приложения.
+
+
+===================================================
+Описание методов
+===================================================  
+
+   - `login(String username, String password)` - метод аутентификация администратора. Ввод логина и пароля, проверка корректности ввода данных
+   - `addBook(librarymanagementapp.Book.Book book)`: void - создает новый объект librarymanagementapp.Book.Book и добавляет его в BookCatalog
+   - `removeBookByCatalogNumber(int catalogNumber)`: boolean - метод удаляет указанный элемент из BookCatalog  
+   - `findBookById(String searchQuery, String type)`: Map<librarymanagementapp.Book.Book> -
+   - `findBookByAuthor(String searchQuery, String type)`: Map<librarymanagementapp.Book.Book>
+   - `findBookByBookTitle(String searchQuery, String type)`: Map<librarymanagementapp.Book.Book>
+   - `sortBooksByGenre(String sortBy)`: void
+   - `sortBooksByAuthor(String sortBy)`: void
+   - `sortBooksByAvailability(String sortBy)`: void
+   - `printCatalog()`: void - показать список всех книг из bookCatalog   
+   - `checkBooksLimit`: void - метод проверяет не превышен ли допустимый лимит книг, которые может взять читатель User.
+   - `login(String username, String password)`: boolean
+   - `addNewUserCard(User user, int limit)`: void - создать новый объект User и UserCard и добавить их в список карт читателей. 
+   - `findUserCardByName` - выводит данные карточки: имя читателя, его userId, список книг, которые были взяты в библиотеке и которые вернули. (на втором этапе можно добавить дату, когда книга была выдана и когда её вернули).
+   - `closeUserCard(int userId)`: boolean - закрыть доступ пользователю в библиотеку
+   - `reopenUserCard(int userId)`: boolean - возобновить доступ пользователю в библиотеку
+   - `borrowBookFromLibrary(int userId, int catalogNumber)`: boolean - выдать книгу читателю User и внести её в userBookList, при условии, что книга существует в каталоге книг (BookCatalog), есть в наличии в библиотеке (isInLibrary=true) и у пользователя не превышен лимит книг (booksLimit).
+   - `returnBookToLibrary(int userId, int catalogNumber)`: boolean - вернуть книгу в библиотеку. Параметр isInLibrary внутри librarymanagementapp.Book.Book меняется на true. Вносим изменения в UserBookList и booksLimit внутри UserCard
+   - `exitMenu`: void - выход из программы
+   - `UserInput` - получение данных, введенных администратором с консоли
+
+
+===================================================
