@@ -49,6 +49,9 @@ public class UserCard {
         borrowedBooks.clear();
         this.isClosed = true;
     }
+    public List<Book>getUserBorrowedBooks(){
+        return borrowedBooks;
+    }
 
     public User getUser() {
         return user;
