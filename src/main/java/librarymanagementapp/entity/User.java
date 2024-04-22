@@ -57,4 +57,8 @@ public class User {
                 ", surname='" + surname + '\'' +
                 '}';
     }
+
+    public String getUserBookList() {
+        return null;
+    }
 }

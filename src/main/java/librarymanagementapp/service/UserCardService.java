@@ -7,6 +7,7 @@ package librarymanagementapp.service;
  */
 
 import librarymanagementapp.UserCard;
+import librarymanagementapp.entity.Book;
 import librarymanagementapp.entity.User;
 import librarymanagementapp.repository.UserCardRepository;
 
@@ -65,5 +66,13 @@ public class UserCardService {
         } else {
             System.out.println("UserCard with ID " + userId + "not found.");
         }
+    }
+    public User findUserByBook(Book book){
+        for (User userCard : repository.values()){
+            if (userCard.getUserBookList().contains(book)){
+                return userCard.getUser();
+            }
+        }
+        return null;
     }
 }

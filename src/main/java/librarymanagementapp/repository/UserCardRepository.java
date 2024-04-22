@@ -19,6 +19,12 @@ public class UserCardRepository implements CrudRepository<Integer, User> {
     }
 
     @Override
+    public void put(User value) {
+        UserCard newUserCard = new UserCard(value);
+        userCards.put(value.getUserId(), newUserCard);
+    }
+
+    @Override
     public void put(Integer key, User value) {
         UserCard newUserCard = new UserCard(value);
         userCards.put(key, newUserCard);
