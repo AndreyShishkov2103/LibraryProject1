@@ -1,4 +1,4 @@
-package librarymanagementapp;
+package librarymanagementapp.entity;
 /**
  * AIT-TR, cohort 42.1, Java Basic, Project1
  *
@@ -101,4 +101,5 @@ public class UserCard {
                 ", isClosed=" + isClosed +
                 '}';
     }
+
 }

@@ -1,15 +1,13 @@
 package librarymanagementapp.repository;
 
 import librarymanagementapp.entity.Book;
-import librarymanagementapp.entity.User;
-import librarymanagementapp.repository.CrudRepository;
 
 import java.util.*;
 
 public class BookCatalogRepository implements CrudRepository<Integer, Book> {
     private Map<Integer, Book> bookMap;
 
-    public BookCatalogRepository() {
+    public BookCatalogRepository () {
         bookMap = new HashMap<>();
     }
 

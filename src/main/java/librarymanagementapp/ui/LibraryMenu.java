@@ -1,8 +1,9 @@
 package librarymanagementapp.ui;
 
+import librarymanagementapp.ui.button.MenuCommand;
+
 import java.util.List;
 import java.util.Scanner;
-import librarymanagementapp.ui.button.MenuCommand;
 
 public class LibraryMenu {
     private final List<MenuCommand> commands;
@@ -25,7 +26,7 @@ public class LibraryMenu {
                 System.out.println("Invalid option, please try again.");
             }
             else {
-                librarymanagementapp.ui.button.MenuCommand command = commands.get(userInput);
+                MenuCommand command = commands.get(userInput);
                 command.executeCommand();
                 exitRequested = command.shouldExit();
             }

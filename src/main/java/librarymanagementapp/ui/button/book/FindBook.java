@@ -1,13 +1,12 @@
-package ui.button.book;
+package librarymanagementapp.ui.button.book;
+
+import librarymanagementapp.service.BookCatalogService;
+import librarymanagementapp.ui.FindBookMenu;
+import librarymanagementapp.ui.button.ExitMenu;
+import librarymanagementapp.ui.button.MenuCommand;
 
 import java.util.ArrayList;
 import java.util.List;
-import librarymanagementapp.ui.button.MenuCommand;
-import librarymanagementapp.ui.AdminMenu;
-import librarymanagementapp.ui.FindBookMenu;
-import librarymanagementapp.ui.button.Back;
-import librarymanagementapp.ui.button.ExitMenu;
-import librarymanagementapp.service.BookCatalogService;
 
 public class FindBook implements MenuCommand {
 
@@ -25,7 +24,6 @@ public class FindBook implements MenuCommand {
         FindByAuthor author = new FindByAuthor(bookCatalogService);
         FindByTitle title = new FindByTitle(bookCatalogService);
         FindById id = new FindById(bookCatalogService);
-        Back back = new Back(new AdminMenu(bookCatalogService));
         ExitMenu exit = new ExitMenu();
 
         menuCommands.clear();
@@ -33,7 +31,6 @@ public class FindBook implements MenuCommand {
         menuCommands.add(author);
         menuCommands.add(title);
         menuCommands.add(id);
-        menuCommands.add(back);
         menuCommands.add(exit);
         FindBookMenu findMenu = new FindBookMenu(menuCommands);
         findMenu.startUserMenu();

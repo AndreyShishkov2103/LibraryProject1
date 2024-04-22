@@ -1,4 +1,4 @@
-package ui.button.book;
+package librarymanagementapp.ui.button.book;
 
 import librarymanagementapp.entity.Book;
 import librarymanagementapp.service.BookCatalogService;

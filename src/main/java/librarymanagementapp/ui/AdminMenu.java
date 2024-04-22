@@ -1,18 +1,19 @@
 package librarymanagementapp.ui;
 
 import librarymanagementapp.service.BookCatalogService;
-import librarymanagementapp.service.util.UserInput;
-import ui.button.book.AddBook;
-import librarymanagementapp.ui.BookMenu;
-import librarymanagementapp.ui.button.MenuCommand;
-import librarymanagementapp.ui.button.ExitMenu;
-import ui.button.book.ViewAllBooks;
-import ui.button.book.FindBook;
-import ui.button.book.RemoveBook;
-import librarymanagementapp.ui.button.Back;
-import librarymanagementapp.service.UserCardService;
 import librarymanagementapp.service.LibraryService;
-
+import librarymanagementapp.service.UserCardService;
+import librarymanagementapp.service.util.UserInput;
+import librarymanagementapp.ui.button.Back;
+import librarymanagementapp.ui.button.ExitMenu;
+import librarymanagementapp.ui.button.MenuCommand;
+import librarymanagementapp.ui.button.book.AddBook;
+import librarymanagementapp.ui.button.book.FindBook;
+import librarymanagementapp.ui.button.book.RemoveBook;
+import librarymanagementapp.ui.button.book.ViewAllBooks;
+import librarymanagementapp.ui.button.library.BorrowBook;
+import librarymanagementapp.ui.button.library.ReturnBook;
+import librarymanagementapp.ui.button.user.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,16 +21,19 @@ import java.util.List;
 public class AdminMenu {
 
     ExitMenu exitMenu;
+    Back back;
     private List<MenuCommand> menuCommands;
     private BookCatalogService bookCatalogService;
-//    private UserCardService userCardService;
-//    private LibraryService libraryService;
+    private UserCardService userCardService;
+    private LibraryService libraryService;
 
 
 
-    public AdminMenu(BookCatalogService bookCatalogService) {
+    public AdminMenu(BookCatalogService bookCatalogService, UserCardService userCardService, LibraryService libraryService) {
         this.exitMenu = new ExitMenu();
         this.bookCatalogService = bookCatalogService;
+        this.libraryService=libraryService;
+        this.userCardService=userCardService;
         this.menuCommands = new ArrayList<>();
     }
 
@@ -52,7 +56,7 @@ public class AdminMenu {
                 ViewAllBooks viewAllBooks = new ViewAllBooks(bookCatalogService);
                 FindBook findBook = new FindBook(bookCatalogService);
                 RemoveBook removeBook = new RemoveBook(bookCatalogService);
-                Back back = new Back(this);
+                back = new Back(this);
                 menuCommands.clear();
                 menuCommands.add(null);
                 menuCommands.add(addBook);
@@ -65,23 +69,36 @@ public class AdminMenu {
                 bookMenu.startUserMenu();
                 break;
             case 2:
-
+                AddUserCard addUserCard = new AddUserCard(userCardService);
+                CloseUserCard closeUserCard = new CloseUserCard(userCardService);
+                FindUserCardByID findUserCardById = new FindUserCardByID(userCardService);
+                FindUserCardByName findUserCardByNames = new FindUserCardByName(userCardService);
+                ReopenUserCard reopenCard = new ReopenUserCard(userCardService);
+                back = new Back(this);
                 menuCommands.clear();
-
-
+                menuCommands.add(null);
+                menuCommands.add(addUserCard);
+                menuCommands.add(closeUserCard);
+                menuCommands.add(findUserCardById);
+                menuCommands.add(findUserCardByNames);
+                menuCommands.add(reopenCard);
                 menuCommands.add(back);
                 menuCommands.add(exitMenu);
-//                UserCardMenu userCardMenu = new UserCardMenu(menuCommands);
-//                userCardMenu.startUserCardMenu();
+                UserCardMenu userCardMenu = new UserCardMenu(menuCommands);
+                userCardMenu.startUserCardMenu();
                 break;
             case 3:
-
+                BorrowBook borrow = new BorrowBook(libraryService);
+                ReturnBook returnBook = new ReturnBook(libraryService);
+                back = new Back(this);
                 menuCommands.clear();
-
+                menuCommands.add(null);
+                menuCommands.add(borrow);
+                menuCommands.add(returnBook);
                 menuCommands.add(back);
                 menuCommands.add(exitMenu);
-//                LibraryMenu libraryMenu = new LibraryMenu(menuCommands);
-//                libraryMenu.startLibraryMenu();
+                LibraryMenu libraryMenu = new LibraryMenu(menuCommands);
+                libraryMenu.startLibraryMenu();
                 break;
             case 4:
                 this.exitMenu.executeCommand();

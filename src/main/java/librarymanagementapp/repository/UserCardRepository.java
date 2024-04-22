@@ -6,12 +6,12 @@ package librarymanagementapp.repository;
  * @version 21-Apr-24
  **/
 
-import librarymanagementapp.UserCard;
+import librarymanagementapp.entity.UserCard;
 import librarymanagementapp.entity.User;
 
 import java.util.*;
 
-public class UserCardRepository implements CrudRepository<Integer, User> {
+public class UserCardRepository implements CrudRepository<Integer, UserCard> {
     private final Map<Integer, UserCard> userCards;
 
     public UserCardRepository() {
@@ -19,75 +19,45 @@ public class UserCardRepository implements CrudRepository<Integer, User> {
     }
 
     @Override
-    public void put(User value) {
-        UserCard newUserCard = new UserCard(value);
-        userCards.put(value.getUserId(), newUserCard);
+    public void put(UserCard value) {
+        userCards.put(value.getUserId(), value);
     }
 
- /*   @Override
-    public void put(Integer key, User value) {
-        UserCard newUserCard = new UserCard(value);
-        userCards.put(key, newUserCard);
-    } */
-
     @Override
-    public User get(Integer key) {
-        UserCard userCard = userCards.get(key);
-        return (userCard != null) ? userCard.getUser() : null;
+    public UserCard get(Integer key) {
+        for (UserCard card : userCards.values()) {
+            if (card.getUserId()==key){
+                return card;
+            }
+        }
+        return null;
     }
 
     @Override
     public void remove(Integer key) {
-        userCards.remove(key);
+        for (int i=0; i<userCards.size(); i++) {
+            if (userCards.get(i).getUserId()==key){
+                userCards.remove(i);
+            }
+        }
     }
 
     @Override
-    public Collection<User> values() {
-        Collection<User> users = new ArrayList<>();
-        for (UserCard userCard : userCards.values()) {
-            users.add(userCard.getUser());
-        }
-        return users;
+    public Collection<UserCard> values() {
+        return userCards.values();
     }
 
     public void init() {
         List<User> usersList = new ArrayList<>(List.of(
-                new User(1, "user", "user"),
-                new User(2, "user1", "user1"),
-                new User(3, "user2", "user2"),
-                new User(4, "user3", "user3"),
-                new User(5, "user4", "user4")
+                new User(1, "Anton", "Gorbovyi"),
+                new User(2, "Halyna", "Potyvaieve"),
+                new User(3, "Yaroslav", "Boiko"),
+                new User(4, "Larysa", "Petrova"),
+                new User(5, "Andrey", "Shishkov")
         ));
         for (User user : usersList) {
-            addUserCards(new UserCard(user));
-        }
-    }
-
-    public Map<Integer, UserCard> getUserCards() {
-        return userCards;
-    }
-
-    public void addUserCards(UserCard userCard) {
-        userCards.put(userCard.getUserId(), userCard);
-    }
-
-    public User getUserById(int userId) {
-        return userCards.get(userId).getUser();
-    }
-
-    public void updateUserCard(UserCard userCard) {
-        if (userCards.containsKey(userCard.getUserId())) {
-            userCards.put(userCard.getUserId(), userCard);
-        } else {
-            System.out.println("User card with ID " + userCard.getUserId() + "does not exist.");
-        }
-    }
-
-    public void removeUserCard(int userId) {
-        if (userCards.containsKey(userId)) {
-            userCards.remove(userId);
-        } else {
-            System.out.println("User card with ID " + userId + "does not exit.");
+            UserCard card = new UserCard(user);
+            this.put(card);
         }
     }
 }

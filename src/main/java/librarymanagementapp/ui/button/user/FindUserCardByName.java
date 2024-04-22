@@ -4,29 +4,24 @@ import librarymanagementapp.service.UserCardService;
 import librarymanagementapp.service.util.UserInput;
 import librarymanagementapp.ui.button.MenuCommand;
 
-public class CloseUserCard implements MenuCommand {
+public class FindUserCardByName implements MenuCommand {
 
     private final UserCardService userCardService;
 
-    public CloseUserCard(UserCardService userCardService) {
+    public FindUserCardByName(UserCardService userCardService) {
         this.userCardService = userCardService;
     }
 
 
     @Override
     public void executeCommand() {
-        int userID=UserInput.getInt("Get User ID: ");
-        boolean ok = userCardService.closeUserCard(userID);
-        if (ok) {
-            System.out.println("User Card was successfully closed!");
-        } else {
-            System.out.println("User Card was not closed!");
-        }
+        String userName=UserInput.getText("Get User Name: ");
+        userCardService.findUserCardByName(userName);
     }
 
     @Override
     public String getMenuName() {
-        return "Close User Card";
+        return "Find User Card by Name";
     }
 
     @Override

@@ -6,7 +6,7 @@ package librarymanagementapp.service;
  * @version 17-Apr-24
  */
 
-import librarymanagementapp.UserCard;
+import librarymanagementapp.entity.UserCard;
 import librarymanagementapp.entity.Book;
 import librarymanagementapp.entity.User;
 import librarymanagementapp.repository.UserCardRepository;
