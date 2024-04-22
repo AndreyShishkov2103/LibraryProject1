@@ -1,7 +1,8 @@
-package librarymanagementapp.ui.button;
+package ui.button.book;
 
 import librarymanagementapp.service.BookCatalogService;
 import librarymanagementapp.service.util.UserInput;
+import librarymanagementapp.ui.button.MenuCommand;
 
 public class RemoveBook implements MenuCommand {
 
