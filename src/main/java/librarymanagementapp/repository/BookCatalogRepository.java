@@ -3,7 +3,12 @@ package librarymanagementapp.repository;
 import librarymanagementapp.entity.Book;
 
 import java.util.*;
-
+/**
+ * AIT-TR, cohort 42.1, Java Basic, Project1
+ *
+ * @author Boiko Yaroslav
+ * @version 22-Apr-24
+ */
 public class BookCatalogRepository implements CrudRepository<Integer, Book> {
     private Map<Integer, Book> bookMap;
 

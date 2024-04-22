@@ -2,7 +2,12 @@ package librarymanagementapp.service;
 
 import librarymanagementapp.entity.Book;
 import librarymanagementapp.repository.BookCatalogRepository;
-
+/**
+ * AIT-TR, cohort 42.1, Java Basic, Project1
+ *
+ * @author Boiko Yaroslav
+ * @version 22-Apr-24
+ */
 
 public class LibraryService {
     private BookCatalogRepository repository;
