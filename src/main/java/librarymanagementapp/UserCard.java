@@ -14,19 +14,19 @@ import java.util.List;
 
 public class UserCard {
     private User user;
-    private List<Book> userBookList;
+    private List<Book> borrowedBooks;
     private int booksLimit;
     private boolean isClosed;
 
     public UserCard(User user) {
         this.user = user;
-        this.userBookList = new ArrayList<>();
+        this.borrowedBooks = new ArrayList<>();
         this.isClosed = false;
     }
 
     public boolean borrowBook(Book book) {
-        if (userBookList.size() < booksLimit) {
-            userBookList.add(book);
+        if (borrowedBooks.size() < booksLimit) {
+            borrowedBooks.add(book);
             return true;
         } else {
             System.out.println("You have reached the limit of borrowed books.");
@@ -35,8 +35,8 @@ public class UserCard {
     }
 
     public boolean returnBook(Book book) {
-        if (userBookList.contains(book)) {
-            userBookList.remove(book);
+        if (borrowedBooks.contains(book)) {
+            borrowedBooks.remove(book);
             return true;
         } else {
             System.out.println("The book is not borrowed by this user.");
@@ -44,8 +44,9 @@ public class UserCard {
         }
     }
 
+
     public void closeCard() {
-        userBookList.clear();
+        borrowedBooks.clear();
         this.isClosed = true;
     }
 
@@ -58,11 +59,11 @@ public class UserCard {
     }
 
     public List<Book> getUserBookList() {
-        return userBookList;
+        return borrowedBooks;
     }
 
     public void setUserBookList(List<Book> userBookList) {
-        this.userBookList = userBookList;
+        this.borrowedBooks = userBookList;
     }
 
     public int getBooksLimit() {
@@ -74,7 +75,7 @@ public class UserCard {
     }
 
     public void reopenCard() {
-        this.userBookList = new ArrayList<>();
+        this.borrowedBooks = new ArrayList<>();
         this.isClosed = false;
     }
 
