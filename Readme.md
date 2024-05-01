@@ -1,6 +1,4 @@
-===================================================
-LibraryApp - групповой проект команды №3
-===================================================
+# LibraryApp - групповой проект команды №2
 
 ===================================================
 Short description
@@ -16,16 +14,36 @@ LibraryApp - приложение управления библиотекой. �
 Сущности (entity)
 ===================================================
 
-1. **Book** 
+   **Book**
    - `author`: String
    - `bookTitle`: String
    - `genre`: String
    - `publisher`: String
    - `catalogNumber`: int - уникальный идентификатор записи
    - `isInLibrary`: boolean - флаг, который показывает книга в хранилище или на руках
+   - `borrowedTo`:
 
+   **User**
+   - `name`: String
+   - `surname`: String
+   - `userId`: int
 
-2. **BookCatalog**
+   **UserCard**
+   - `user`: User
+   - `userBookList`: List<Book>
+   - `booksLimit`: int
+   - `findUserCardByName`
+   - `checkBooksLimit`: void
+   - `borrowBook(Book book)`: boolean
+   - `returnBook(Book book)`: boolean
+   - `closeCard()`: void
+   - `reopenUserCard()`: void
+
+===================================================
+Репозитории (repository)
+===================================================
+
+   **BookCatalogRepository**
    - `books`: Map<Book> (поиск по `catalogNumber`, `bookTitle`)
    - `addBook(Book book)`: void
    - `removeBookByCatalogNumber(int catalogNumber)`: boolean
@@ -34,49 +52,53 @@ LibraryApp - приложение управления библиотекой. �
    - `findBookByBookTitle(String searchQuery, String type)`: Map<Book>
    - `printCatalog()`: void
 
-3. **User**
-   - `name`: String
-   - `surname`: String
-   - `userId`: int
+   **CrudRepository**
+   - `UserInput`
 
-4. **UserCard**
-   - `user`: User
-   - `userBookList`: List<Book>
-   - `booksLimit`: int
-   - `findUserCardByName`
-   - `checkBooksLimit`: void 
-   - `borrowBook(Book book)`: boolean
-   - `returnBook(Book book)`: boolean
-   - `closeCard()`: void
-   - `reopenUserCard()`: void
-
-5. **UserCardService**
-   - `addNewUserCard(User user, int limit)`: void
-   - `closeUserCard(int userId)`: boolean
-   - `reopenUserCard(int userId)`: boolean
-
-6. **LibraryApp**
-   - `bookCatalog`: BookCatalog
-   - `userCards`: Map<Integer, UserCard>
-   - `borrowBookFromLibrary(int userId, int catalogNumber)`: boolean
-   - `returnBookToLibrary(int userId, int catalogNumber)`: boolean
-   - `exitMenu`: void
-
-7. **UserMenu** - Антон
-   - `UserMenu`
-   
-8. Service method - Антон
+   **UserCardRepository**
    - `UserInput`
 
 ===================================================
 Методы (service)
 ===================================================
 
+   **BookCatalogService**
+   - `books`: Map<Book> (поиск по `catalogNumber`, `bookTitle`)
+   - `addBook(Book book)`: void
+   - `removeBookByCatalogNumber(int catalogNumber)`: boolean
+   - `findBookById(String searchQuery, String type)`: Map<Book>
+   - `findBookByAuthor(String searchQuery, String type)`: Map<Book>
+   - `findBookByBookTitle(String searchQuery, String type)`: Map<Book>
+   - `printCatalog()`: void
+
+   **LibraryService**
+   - `addNewUserCard(User user, int limit)`: void
+   - `closeUserCard(int userId)`: boolea
+   - `reopenUserCard(int userId)`: boolean
+
+   **UserCardService**
+   - `addNewUserCard(User user, int limit)`: void
+   - `closeUserCard(int userId)`: boolean
+   - `reopenUserCard(int userId)`: boolean
 
 ===================================================
-Репозитории (repository)
+Util
 ===================================================
 
+
+===================================================
+UserInterface (ui)
+===================================================
+
+   **LibraryApp**
+   - `bookCatalog`: BookCatalog
+   - `userCards`: Map<Integer, UserCard>
+   - `borrowBookFromLibrary(int userId, int catalogNumber)`: boolean
+   - `returnBookToLibrary(int userId, int catalogNumber)`: boolean
+   - `exitMenu`: void
+
+   **UserMenu**
+   - `UserMenu`
 
 ===================================================
 (опционально) Страница авторизации администратора

@@ -1,5 +1,12 @@
 package librarymanagementapp.ui;
 
+/**
+ * AIT-TR, cohort 42.1, Java Basic, Project1
+ *
+ * @author: Anton Gorbovyi
+ * @version: 22.04.2024
+ **/
+
 import librarymanagementapp.ui.button.ExitMenu;
 import librarymanagementapp.ui.button.MenuCommand;
 

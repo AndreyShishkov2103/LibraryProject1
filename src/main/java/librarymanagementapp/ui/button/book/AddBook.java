@@ -1,5 +1,12 @@
 package librarymanagementapp.ui.button.book;
 
+/**
+ * AIT-TR, cohort 42.1, Java Basic, Project1
+ *
+ * @author: Anton Gorbovyi
+ * @version: 22.04.2024
+ **/
+
 import librarymanagementapp.service.BookCatalogService;
 import librarymanagementapp.service.util.UserInput;
 import librarymanagementapp.ui.button.MenuCommand;

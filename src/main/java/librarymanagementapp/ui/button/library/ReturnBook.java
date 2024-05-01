@@ -1,5 +1,12 @@
 package librarymanagementapp.ui.button.library;
 
+/**
+ * AIT-TR, cohort 42.1, Java Basic, Project1
+ *
+ * @author: Anton Gorbovyi
+ * @version: 22.04.2024
+ **/
+
 import librarymanagementapp.service.LibraryService;
 import librarymanagementapp.service.util.UserInput;
 import librarymanagementapp.ui.button.MenuCommand;
@@ -13,7 +20,7 @@ public class ReturnBook implements MenuCommand {
 
     @Override
     public void executeCommand() {
-        int bookId = UserInput.getInt("Book ID that need to borrow to Reader: ");
+        int bookId = UserInput.getInt("Book catalog number for return to the library: ");
         libraryService.returnBookToLibrary(bookId);
     }
 

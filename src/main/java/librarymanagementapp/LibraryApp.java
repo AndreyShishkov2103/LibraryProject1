@@ -1,10 +1,11 @@
 package librarymanagementapp;
 
 /**
- * @author: Anton Gorbovyi
- * @version: 21.04.2024
+ * AIT-TR, cohort 42.1, Java Basic, Project1
  *
- */
+ * @author: Anton Gorbovyi
+ * @version: 22.04.2024
+ **/
 
 import librarymanagementapp.repository.BookCatalogRepository;
 import librarymanagementapp.repository.UserCardRepository;
